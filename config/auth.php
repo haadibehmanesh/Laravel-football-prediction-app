@@ -36,6 +36,11 @@ return [
     */
 
     'guards' => [
+        'fan' => [
+            'driver' => 'session',
+            'provider' => 'fans',
+        ],
+
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -66,6 +71,11 @@ return [
     */
 
     'providers' => [
+        'fans' => [
+            'driver' => 'eloquent',
+            'model' => App\Fan::class,
+        ],
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
@@ -93,6 +103,12 @@ return [
     */
 
     'passwords' => [
+        'fans' => [
+            'provider' => 'fans',
+            'table' => 'fan_password_resets',
+            'expire' => 60,
+        ],
+
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',

@@ -19,3 +19,17 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::group(['prefix' => 'fan'], function () {
+  Route::get('/login', 'FanAuth\LoginController@showLoginForm')->name('login');
+  Route::post('/login', 'FanAuth\LoginController@login');
+  Route::post('/logout', 'FanAuth\LoginController@logout')->name('logout');
+
+  Route::get('/register', 'FanAuth\RegisterController@showRegistrationForm')->name('register');
+  Route::post('/register', 'FanAuth\RegisterController@register');
+
+  Route::post('/password/email', 'FanAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
+  Route::post('/password/reset', 'FanAuth\ResetPasswordController@reset')->name('password.email');
+  Route::get('/password/reset', 'FanAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+  Route::get('/password/reset/{token}', 'FanAuth\ResetPasswordController@showResetForm');
+});
