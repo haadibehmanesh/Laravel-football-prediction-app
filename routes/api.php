@@ -22,3 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
   Route::group(['middleware' => 'auth:api'], function () {
     Route::post('details', 'API\FanController@details');
   });
+
+  Route::get('/news', 'ApiController@getNews')->name('Api.getNews');
