@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Resources\News as NewsResource;
 use App\News;
 use App\LeagueCalendar;
 use App\UserPrediction;
+use PhpParser\Node\Expr\Array_;
 
 class ApiController extends Controller
 {
@@ -15,42 +17,47 @@ class ApiController extends Controller
         //$news = News::all();
         return NewsResource::collection(News::all());
     }
-    public function predictGame(Request $request)
+
+    public function prediction(Request $request)
     {
+        $games = json_decode($request->games);
+        $fanId = $request->fanId;
+        $type = $request->type;
+        $messages = [
+            'required' => 'پر کردن این فیلد اجباری است!',
+            'numeric' => 'ورودی باید به صورت عدد باشد',
+            'integer' => 'ورودی باید به صورت عدد باشد',
+        ];
+        $validatedData = Validator::make($request->all(), [
+            'fanId' => 'required|numeric|integer'
+        ], $messages);
+        if (!$validatedData->fails()) {
+            if (!empty($fanId) && !empty($games) && !empty($type)) {
 
+                foreach ($games as $game) {
+                    $this->predictGame($game, $fanId, $type);
+                }
+            }
+        }
+    }
 
-         //dd($request);
-         $game_id = $request->id;
-         $fan_id = $request->fanId;
-         $team1Goals = $request->team1Goals;
-         $team2Goals = $request->team2Goals;
-         $messages = [
-             'required' => 'پر کردن این فیلد اجباری است!',
-             'numeric' => 'ورودی باید به صورت عدد باشد',
-             'integer' => 'ورودی باید به صورت عدد باشد',
-            // 'min' => 'ورودی نمی تواند 0 یا منفی باشد',
-         ];
-         $validatedData = Validator::make($request->all(), [
-             'id' => 'required|numeric|integer',
-             'team1Goals' => 'required|numeric|integer',
-             'team2Goals' => 'required|numeric|integer'
-         ], $messages);
-         if (!$validatedData->fails()) {
-            $game = LeagueCalendar::where('id', $game_id)->first(); 
-          
-            if (!empty($game)) {
-                $gamePrediction = new UserPrediction();
-                $gamePrediction->league_calendar_id = $game->id;
-                $gamePrediction->fan_id = $fan_id;
-                $gamePrediction->team1_goals = $team1Goals;
-                $gamePrediction->team2_goals = $team2Goals;
-                $gamePrediction->save();
-            } 
-           
-           
-         }
-       // $children = BiProduct::where('parent_id', $request->id)->orderBy('sort_order', 'desc')->where('status', 1)->get();
-        // dd($children);
-        //return ChildrenResource::collection($children);
+    public function predictGame($game, $fanId, $type)
+    {
+        //dd($fanId);
+        $game_id = $game->id; //league_calendar_id
+        $game_fanId = $fanId;
+        $team1Goals = $game->team1Goals;
+        $team2Goals = $game->team2Goals;
+        $gameInsert = LeagueCalendar::where('id', $game_id)->first();
+
+        if (!empty($gameInsert)) {
+            $gamePrediction = new UserPrediction();
+            $gamePrediction->league_calendar_id = $gameInsert->id;
+            $gamePrediction->fan_id = $game_fanId;
+            $gamePrediction->team1_goals = $team1Goals;
+            $gamePrediction->team2_goals = $team2Goals;
+            $gamePrediction->type = $type;
+            $gamePrediction->save();
+        }
     }
 }
