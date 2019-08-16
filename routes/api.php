@@ -24,4 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
   });
 
   Route::get('/news', 'ApiController@getNews')->name('Api.getNews');
+  Route::post('/gallery', 'ApiController@fetchGallery')->name('Api.fetchGallery');
+  Route::get('/teams', 'ApiController@fetchTeams')->name('Api.fetchTeams');
   Route::post('predict', 'ApiController@prediction');
