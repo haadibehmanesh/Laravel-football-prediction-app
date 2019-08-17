@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1989ab506cf3cb7db58cab5c126dd0c3",
+    "content-hash": "8de88bf5a021cf4cb95e7ea2e1636007",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -2264,6 +2264,109 @@
                 "server"
             ],
             "time": "2019-05-05T09:22:01+00:00"
+        },
+        {
+            "name": "melipayamak/laravel",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Melipayamak/melipayamak-laravel.git",
+                "reference": "ae67f2d59c929fe18a1396740820b14db2cbc553"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Melipayamak/melipayamak-laravel/zipball/ae67f2d59c929fe18a1396740820b14db2cbc553",
+                "reference": "ae67f2d59c929fe18a1396740820b14db2cbc553",
+                "shasum": ""
+            },
+            "require": {
+                "melipayamak/php": "0.1.0"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Melipayamak\\Laravel\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Melipayamak": "Melipayamak\\Laravel\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Melipayamak\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ara Code It",
+                    "email": "ahnara92@gmail.com"
+                },
+                {
+                    "name": "melipayamak",
+                    "email": "melipayamak.ir@gmail.com"
+                }
+            ],
+            "description": "Laravel Melipayamak Integration",
+            "homepage": "http://github.com/Melipayamak/melipayamak-laravel",
+            "keywords": [
+                "api",
+                "laravel",
+                "melipayamak",
+                "sms"
+            ],
+            "time": "2018-05-01T15:39:41+00:00"
+        },
+        {
+            "name": "melipayamak/php",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Melipayamak/melipayamak-php.git",
+                "reference": "c167f71190897617a8aaa06e29539212ddf2a225"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Melipayamak/melipayamak-php/zipball/c167f71190897617a8aaa06e29539212ddf2a225",
+                "reference": "c167f71190897617a8aaa06e29539212ddf2a225",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Melipayamak\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Melipayamak Team",
+                    "email": "melipayamak.ir@gmail.com"
+                },
+                {
+                    "name": "Ara Code It",
+                    "email": "ahnara92@gmail.com"
+                }
+            ],
+            "description": "A PHP wrapper for melipayamak's web services",
+            "homepage": "http://github.com/Melipayamak/melipayamak-php",
+            "keywords": [
+                "api",
+                "melipayamak",
+                "sms"
+            ],
+            "time": "2018-03-13T01:38:51+00:00"
         },
         {
             "name": "monolog/monolog",
