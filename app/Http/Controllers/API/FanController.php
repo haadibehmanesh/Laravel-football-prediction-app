@@ -6,6 +6,7 @@ use App\Fan;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use Carbon\Carbon;
+use Melipayamak\MelipayamakApi;
 class FanController extends Controller 
 {
 public $successStatus = 200;
@@ -53,7 +54,34 @@ if ($validator->fails()) {
             $success['token'] = $objToken-> accessToken; 
             $expiration = $objToken->token->expires_at->diffInSeconds(Carbon::now());
             
-
+          /*  try{
+                $username = '09177105063';
+                $password = '8063';
+                $api = new MelipayamakApi($username,$password);
+                $sms = $api->sms();
+                $to = $request->phone;
+                //$bodyId = 2947;
+                $from = '500010606390';
+                $text = 'عضویت شما تایید شد!';
+                $response = $sms->send($to,$from,$text);
+                $json = json_decode($response);
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }*/
+            try{
+                $username = '09177105063';
+                $password = '8063';
+                $api = new MelipayamakApi($username,$password);
+                $sms = $api->sms('soap');
+                
+                $to =$request->phone;
+                $bodyId = 2947;
+                $text = 'تست';
+                $response = $sms->sendByBaseNumber($text,$to,$bodyId);
+                $json = json_decode($response);
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }
            // $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             $success['name'] =  $user->name;
             return response()->json(['success' => $success,"expires_in" => $expiration], $this-> successStatus);
