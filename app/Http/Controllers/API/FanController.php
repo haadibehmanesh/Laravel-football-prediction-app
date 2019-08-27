@@ -3,6 +3,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller; 
 use App\Fan; 
+use App\FanScore;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use Carbon\Carbon;
@@ -68,6 +69,9 @@ if ($validator->fails()) {
             }catch(Exception $e){
                 echo $e->getMessage();
             }*/
+            $score = FanScore::firstOrNew(['fan_id' => $user->id]);
+            $score->score_value = $score->score_value + 5;
+            $score->save();
             try{
                 $username = '09177105063';
                 $password = '8063';
@@ -75,7 +79,7 @@ if ($validator->fails()) {
                 $sms = $api->sms('soap');
                 
                 $to =$request->phone;
-                $bodyId = 2947;
+                $bodyId = 8038;
                 $text = 'تست';
                 $response = $sms->sendByBaseNumber($text,$to,$bodyId);
                 $json = json_decode($response);

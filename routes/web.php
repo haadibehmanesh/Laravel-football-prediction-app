@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => 'admin'], function () {
+ 
+  Route::get('posts/league-calendars','Voyager\ValidatePredictionController@validatePrediction')->name('league-calendars.validatePrediction');
     Voyager::routes();
 });
 

@@ -77,6 +77,6 @@ class ApiController extends Controller
 
         $teams = TeamLeague::all();
 dd($teams);
-        return SearchResource::collection($products);
+        return SearchResource::collection($teams);
     }
 }
