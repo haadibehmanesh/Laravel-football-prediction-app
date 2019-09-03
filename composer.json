@@ -15,7 +15,8 @@
         "laravel/passport": "^7.3",
         "laravel/tinker": "^1.0",
         "melipayamak/laravel": "^0.1.0",
-        "tcg/voyager": "^1.2"
+        "tcg/voyager": "^1.2",
+        "tumainimosha/laravel-coming-soon": "^1.4"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
