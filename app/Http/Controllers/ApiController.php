@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Resources\News as NewsResource;
 use App\Http\Resources\GalleryItems as GalleryItemsResource;
+use App\Http\Resources\TeamStandings as TeamStandingsResource;
 use App\News;
 use App\Gallery;
 use App\GalleryItem;
@@ -16,10 +17,11 @@ use PhpParser\Node\Expr\Array_;
 
 class ApiController extends Controller
 {
-    public function getNews()
+    public function getNews(Request $request)
     {
-        //$news = News::all();
-        return NewsResource::collection(News::all());
+        
+        $pagination  = $request->pagination;
+        return NewsResource::collection(News::paginate($pagination));
     }
 
     public function prediction(Request $request)
@@ -67,16 +69,17 @@ class ApiController extends Controller
     public function fetchGallery(Request $request)
     {
         $gallery = Gallery::where('id', $request->id)->first();
-
-        $galleryItems = GalleryItem::where('gallery_id', $gallery->id)->get();
+        $pagination  = $request->pagination;
+        $galleryItems = GalleryItem::where('gallery_id', $gallery->id)->paginate($pagination);
         return GalleryItemsResource::collection($galleryItems);
     }
     
-    public function fetchTeams()
+    public function fetchTeams(Request $request)
     {
-
-        $teams = TeamLeague::all();
-dd($teams);
-        return SearchResource::collection($teams);
+        $pagination  = $request->pagination;
+        
+        $teams = TeamLeague::paginate($pagination);
+        
+        return TeamStandingsResource::collection($teams);
     }
 }
