@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Games extends JsonResource
+class PredictProfile extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,15 +20,14 @@ class Games extends JsonResource
             'team1_logo' => $this->team1_logo,
             'team2_name' => $this->team2_name,
             'team2_logo' => $this->team2_logo,
-            'team1_goals' => $this->team1_goals,
-            'team2_goals' => $this->team2_goals,
+            'team1_goals' => $this->team1goals,
+            'team2_goals' => $this->team2goals,
             'team1_goalsP' => $this->team1goalsP,
             'team2_goalsP' => $this->team2goalsP,
             'game_time' => $this->game_time,
             'game_date' => $this->game_date,
             'title' => $this->title,
             'status' => $this->status,
-            'week' => $this->week,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

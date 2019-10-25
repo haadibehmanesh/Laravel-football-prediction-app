@@ -13,6 +13,7 @@ use App\Fan;
 |
 */
 
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
   });
@@ -24,8 +25,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
   });
 
   Route::post('/news', 'ApiController@getNews')->name('Api.getNews');
+  Route::post('/othernews', 'ApiController@otherNews')->name('Api.otherNews');
+  Route::post('/newsaddlike', 'ApiController@addLikeNews')->name('Api.addLikeNews');
+  Route::post('/newsdeletelike', 'ApiController@deleteLikeNews')->name('Api.deleteLikeNews');
   Route::post('/gallery', 'ApiController@fetchGallery')->name('Api.fetchGallery');
   Route::post('/teamstandings', 'ApiController@fetchTeams')->name('Api.fetchTeams');
   Route::post('predict', 'ApiController@prediction');
   Route::post('userinfo', 'ApiController@fetchUserInfo');
+  Route::post('predictProfile', 'ApiController@fetchPredictedGames');
   Route::post('games', 'ApiController@fetchGames');
+  Route::post('topusers', 'ApiController@fetchTopUsers');
+  Route::post('topusersweek', 'ApiController@fetchTopWeek');
+  Route::post('topusersseason', 'ApiController@fetchTopSeason');
+  Route::post('newsdetail', 'ApiController@newsDetail');

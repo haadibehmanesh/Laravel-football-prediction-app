@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class News extends JsonResource
+class TopUsers extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,11 @@ class News extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'abstract' => $this->abstract,
-            'image' => $this->image,
-            'video' => $this->video,
+            'fan_id' => $this->fan_id,
+            'name' => $this->name,
+            'total' =>  $this->sum,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'is_fav' => $this->fav,
         ];
     }
 }

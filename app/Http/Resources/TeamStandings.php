@@ -17,7 +17,9 @@ class TeamStandings extends JsonResource
         return [
             'id' => $this->id,
             'team_id' => $this->team_id,
+            'team_name' => $this->team_name,
             'league_id' => $this->league_id,
+            'position' => $this->position,
             'score' => $this->score,
             'win' => $this->win,
             'draw' => $this->draw,
