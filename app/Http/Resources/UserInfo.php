@@ -20,7 +20,8 @@ class UserInfo extends JsonResource
        return [
         'id' => $this->id,
         'score' =>$this->score,
-        //'total' =>$this->totalWallet,
+        'image' =>$this->image,
+        'total' =>$this->total,
         'invitationCode' =>$this->invitation_code,
        // 'usage_terms' =>$this->usage_terms,
 
