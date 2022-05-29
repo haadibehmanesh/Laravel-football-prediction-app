@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use Laravel\Passport\HasApiTokens;
 use App\Notifications\FanResetPassword;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +17,7 @@ class Fan extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','phone', 'email', 'password',
+        'name', 'phone', 'email', 'password', 'image'
     ];
 
     /**
@@ -38,4 +39,8 @@ class Fan extends Authenticatable
     {
         $this->notify(new FanResetPassword($token));
     }
+   /* public function getImageAttribute()
+    {
+        return $this->image;
+    }*/
 }
