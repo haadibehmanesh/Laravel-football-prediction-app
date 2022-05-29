@@ -32,9 +32,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
   Route::post('/teamstandings', 'ApiController@fetchTeams')->name('Api.fetchTeams');
   Route::post('predict', 'ApiController@prediction');
   Route::post('userinfo', 'ApiController@fetchUserInfo');
+  Route::post('uploadimage', 'ApiController@uploadProfileImage');
+
   Route::post('predictProfile', 'ApiController@fetchPredictedGames');
   Route::post('games', 'ApiController@fetchGames');
+  Route::post('currentgames', 'ApiController@fetchCurrentgames');
   Route::post('topusers', 'ApiController@fetchTopUsers');
   Route::post('topusersweek', 'ApiController@fetchTopWeek');
   Route::post('topusersseason', 'ApiController@fetchTopSeason');
   Route::post('newsdetail', 'ApiController@newsDetail');
+  Route::post('search', 'ApiController@fetchSearch');

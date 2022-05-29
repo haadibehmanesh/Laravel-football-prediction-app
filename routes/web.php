@@ -19,6 +19,7 @@ Route::get('/', function () {
   return view('comingsoon::comingsoon');
 });
 
+
 Route::group(['prefix' => 'admin'], function () {
  
   Route::get('posts/league-calendars','Voyager\ValidatePredictionController@validatePrediction')->name('league-calendars.validatePrediction');
